@@ -13,10 +13,13 @@
 <body>
 
 <header class="site-header">
-  <div class="container d-flex align-items-center justify-content-between py-3">
+  <div class="container header-inner py-3">
     <a href="index.html" class="brand"><span class="mark"></span>NTD<span style="opacity:.4;">·</span>SynthGen</a>
-    <nav class="d-flex align-items-center">
-      <a href="index.html" class="active d-none d-md-inline">Home</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Home</a>
       <a href="pages/upload.html">Upload</a>
       <a href="pages/train.html">Train</a>
       <a href="pages/generate.html">Generate</a>
@@ -114,15 +117,13 @@
 </section>
 
 <footer class="site-footer">
-  <div class="container d-flex flex-wrap justify-content-between gap-3">
-    <span>NTD SynthGen v1.0 · Built for public health informatics research.</span>
-    <span style="font-family: var(--f-mono); font-size: 0.78rem;">api.base = <span id="api-base">…</span></span>
+  <div class="container">
+    <span>NTD SynthGen v1.0 &middot; Built for public health informatics research</span>
   </div>
 </footer>
 
 <script src="js/api.js"></script>
 <script>
-  document.getElementById("api-base").textContent = NTD.API.base;
   NTD.API.listModules()
     .then((mods) => {
       const list = document.getElementById("module-list");
