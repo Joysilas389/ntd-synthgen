@@ -84,7 +84,7 @@
     desc.innerHTML = `<span class="spinner-pill">loading…</span>`;
     try {
       const m = await NTD.API.getModule(name);
-      desc.textContent = m.description || "(no description)";
+      desc.innerHTML = NTD.mdToHtml(m.description) || "<p>(no description)</p>";
     } catch (err) {
       desc.innerHTML = `<div class='alert alert-danger'>${err.message}</div>`;
     }

@@ -125,5 +125,72 @@
     }</div>`;
   }
 
-  window.NTD = { API, Session, toast, showLoader, histogram, heatmap };
+  // Tiny markdown renderer for module descriptions.
+  // Handles headings, bold, inline code, bullet lists, paragraphs.
+  // Escapes HTML first to avoid injection.
+  function mdToHtml(src) {
+    if (!src) return "";
+    // Escape HTML
+    const esc = (s) => s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    const lines = src.split(/\r?\n/);
+    const out = [];
+    let inList = false;
+    let paraBuf = [];
+
+    const flushPara = () => {
+      if (paraBuf.length) {
+        out.push(`<p>${inlineFmt(paraBuf.join(" "))}</p>`);
+        paraBuf = [];
+      }
+    };
+    const closeList = () => {
+      if (inList) { out.push("</ul>"); inList = false; }
+    };
+    const inlineFmt = (s) => {
+      // Bold: **text**
+      s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      // Inline code: `text`
+      s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+      return s;
+    };
+
+    for (const raw of lines) {
+      const line = raw.trim();
+      if (!line) {
+        flushPara();
+        closeList();
+        continue;
+      }
+      const escLine = esc(line);
+      // Headings
+      let m = escLine.match(/^(#{1,6})\s+(.*)$/);
+      if (m) {
+        flushPara();
+        closeList();
+        const level = Math.min(m[1].length + 2, 6); // h1 -> h3, h2 -> h4
+        out.push(`<h${level}>${inlineFmt(m[2])}</h${level}>`);
+        continue;
+      }
+      // Bullet list
+      m = escLine.match(/^[-*]\s+(.*)$/);
+      if (m) {
+        flushPara();
+        if (!inList) { out.push("<ul>"); inList = true; }
+        out.push(`<li>${inlineFmt(m[1])}</li>`);
+        continue;
+      }
+      // Default: paragraph line
+      closeList();
+      paraBuf.push(escLine);
+    }
+    flushPara();
+    closeList();
+    return out.join("\n");
+  }
+
+  window.NTD = { API, Session, toast, showLoader, histogram, heatmap, mdToHtml };
 })();
