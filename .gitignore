@@ -21,3 +21,4 @@ models/*
 
 # Vercel
 .vercel/
+.github/
