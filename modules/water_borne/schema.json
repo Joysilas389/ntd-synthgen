@@ -1,0 +1,58 @@
+{
+  "title": "Water-borne NTDs",
+  "subtitle": "Schistosomiasis, soil-transmitted helminthiases, dracunculiasis",
+  "version": "1.0",
+  "target": "disease_cases",
+  "features": [
+    {
+      "name": "region",
+      "type": "categorical",
+      "description": "Administrative region or country",
+      "examples": ["Greater Accra", "Ashanti", "Lagos", "Nairobi", "Kano", "Kumasi"]
+    },
+    {
+      "name": "rainfall_mm",
+      "type": "numeric",
+      "unit": "mm/month",
+      "min": 0,
+      "max": 500
+    },
+    {
+      "name": "temperature_c",
+      "type": "numeric",
+      "unit": "celsius",
+      "min": 15,
+      "max": 40
+    },
+    {
+      "name": "population_density",
+      "type": "numeric",
+      "unit": "people/km^2",
+      "min": 1,
+      "max": 5000
+    },
+    {
+      "name": "sanitation_index",
+      "type": "numeric",
+      "description": "0-1 composite of WASH coverage",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "water_source",
+      "type": "categorical",
+      "examples": ["piped", "borehole", "well", "river", "lake"]
+    },
+    {
+      "name": "open_defecation_rate",
+      "type": "numeric",
+      "min": 0,
+      "max": 1
+    }
+  ],
+  "constraints": {
+    "disease_cases": { "min": 0 },
+    "sanitation_index": { "min": 0, "max": 1 },
+    "open_defecation_rate": { "min": 0, "max": 1 }
+  }
+}

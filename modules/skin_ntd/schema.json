@@ -1,0 +1,63 @@
+{
+  "title": "Skin NTDs",
+  "subtitle": "Buruli ulcer, leprosy, yaws, scabies, mycetoma",
+  "version": "1.0",
+  "target": "disease_cases",
+  "features": [
+    {
+      "name": "region",
+      "type": "categorical",
+      "examples": ["Ashanti", "Eastern", "Cross River", "Western", "Coast"]
+    },
+    {
+      "name": "humidity_pct",
+      "type": "numeric",
+      "unit": "%",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "rainfall_mm",
+      "type": "numeric",
+      "unit": "mm/month",
+      "min": 0,
+      "max": 500
+    },
+    {
+      "name": "proximity_to_water_km",
+      "type": "numeric",
+      "min": 0,
+      "max": 50
+    },
+    {
+      "name": "household_size",
+      "type": "numeric",
+      "min": 1,
+      "max": 20
+    },
+    {
+      "name": "sanitation_index",
+      "type": "numeric",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "healthcare_access_index",
+      "type": "numeric",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "skin_contact_occupation",
+      "type": "categorical",
+      "examples": ["farming", "fishing", "mining", "trade", "education"]
+    }
+  ],
+  "constraints": {
+    "disease_cases": { "min": 0 },
+    "household_size": { "min": 1, "max": 30 },
+    "sanitation_index": { "min": 0, "max": 1 },
+    "healthcare_access_index": { "min": 0, "max": 1 },
+    "humidity_pct": { "min": 0, "max": 100 }
+  }
+}

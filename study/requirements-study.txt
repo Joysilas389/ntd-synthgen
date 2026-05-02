@@ -1,0 +1,4 @@
+# Additional dependencies for the comparison study only.
+# Not required for the deployed engine.
+sdv>=1.16,<2.0
+matplotlib>=3.8

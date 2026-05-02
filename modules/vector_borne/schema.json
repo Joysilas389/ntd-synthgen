@@ -1,0 +1,65 @@
+{
+  "title": "Vector-borne NTDs",
+  "subtitle": "Lymphatic filariasis, onchocerciasis, leishmaniasis, trypanosomiasis",
+  "version": "1.0",
+  "target": "disease_cases",
+  "features": [
+    {
+      "name": "region",
+      "type": "categorical",
+      "examples": ["Volta", "Northern", "Lagos", "Rift Valley", "Kaduna"]
+    },
+    {
+      "name": "rainfall_mm",
+      "type": "numeric",
+      "unit": "mm/month",
+      "min": 0,
+      "max": 500
+    },
+    {
+      "name": "temperature_c",
+      "type": "numeric",
+      "unit": "celsius",
+      "min": 15,
+      "max": 40
+    },
+    {
+      "name": "humidity_pct",
+      "type": "numeric",
+      "unit": "%",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "vegetation_index",
+      "type": "numeric",
+      "description": "NDVI-derived score in [0,1]",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "vector_density",
+      "type": "numeric",
+      "description": "Estimated vectors per trap-night",
+      "min": 0,
+      "max": 1000
+    },
+    {
+      "name": "bednet_coverage",
+      "type": "numeric",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "land_use",
+      "type": "categorical",
+      "examples": ["urban", "peri_urban", "rural_agriculture", "forest"]
+    }
+  ],
+  "constraints": {
+    "disease_cases": { "min": 0 },
+    "humidity_pct": { "min": 0, "max": 100 },
+    "vegetation_index": { "min": 0, "max": 1 },
+    "bednet_coverage": { "min": 0, "max": 1 }
+  }
+}

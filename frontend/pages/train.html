@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Model · NTD SynthGen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<main class="container py-5">
+  <div id="alert-wrap"></div>
+  <span class="eyebrow">Step 02 / 04</span>
+  <h1 class="mt-3">Train the synthesizer.</h1>
+  <p class="lede">Pick a disease module and fit the Gaussian copula model on either
+  your uploaded data or the bundled seed. Training runs in seconds for typical
+  sizes (a few hundred rows).</p>
+
+  <div class="row g-4 mt-3">
+    <div class="col-lg-7">
+      <div class="card-paper">
+        <h3>Configure training</h3>
+        <form id="train-form">
+          <div class="mb-3">
+            <label class="form-label">Disease module</label>
+            <select id="module" class="form-select" required></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Data source</label>
+            <select id="source" class="form-select">
+              <option value="seed">Bundled seed dataset</option>
+              <option value="uploaded">Use my uploaded CSV</option>
+            </select>
+            <small id="dataset-info" style="font-family: var(--f-mono); font-size: 0.78rem; color: var(--c-ink-soft);"></small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Random seed</label>
+            <input id="seed" type="number" class="form-control" value="42">
+          </div>
+          <button type="submit" class="btn btn-accent">Train model</button>
+        </form>
+        <div id="train-result" class="mt-4"></div>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="card-paper">
+        <h3>Module description</h3>
+        <div id="module-desc" style="white-space: pre-wrap;"><span class="spinner-pill">loading…</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/api.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  NTDLayout.renderHeader("train");
+  NTDLayout.renderFooter();
+
+  const moduleSelect = document.getElementById("module");
+  const sourceSelect = document.getElementById("source");
+  const dsInfo = document.getElementById("dataset-info");
+  const desc = document.getElementById("module-desc");
+
+  function refreshDatasetInfo() {
+    const meta = NTD.Session.get("dataset_meta");
+    if (sourceSelect.value === "uploaded") {
+      if (meta) {
+        dsInfo.textContent = `Using ${meta.filename} — ${meta.rows} rows, ${meta.columns.length} columns.`;
+      } else {
+        dsInfo.innerHTML = "<span style='color: var(--c-accent)'>No uploaded dataset found. <a href='upload.html'>Upload one</a> or switch to seed.</span>";
+      }
+    } else {
+      dsInfo.textContent = "Bundled seed for the selected module will be used.";
+    }
+  }
+
+  async function refreshDescription() {
+    const name = moduleSelect.value;
+    if (!name) return;
+    desc.innerHTML = `<span class="spinner-pill">loading…</span>`;
+    try {
+      const m = await NTD.API.getModule(name);
+      desc.textContent = m.description || "(no description)";
+    } catch (err) {
+      desc.innerHTML = `<div class='alert alert-danger'>${err.message}</div>`;
+    }
+  }
+
+  NTD.API.listModules().then(mods => {
+    moduleSelect.innerHTML = mods.map(m => `<option value="${m.name}">${m.title}</option>`).join("");
+    refreshDescription();
+    refreshDatasetInfo();
+  }).catch(err => NTD.toast(err.message, "danger"));
+
+  moduleSelect.addEventListener("change", refreshDescription);
+  sourceSelect.addEventListener("change", refreshDatasetInfo);
+
+  document.getElementById("train-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const result = document.getElementById("train-result");
+    NTD.showLoader(result, "training synthesizer…");
+    const payload = {
+      module: moduleSelect.value,
+      seed: parseInt(document.getElementById("seed").value, 10) || 42,
+    };
+    if (sourceSelect.value === "uploaded") {
+      const ds = NTD.Session.get("dataset_id");
+      if (!ds) {
+        result.innerHTML = `<div class="alert alert-danger">No uploaded dataset in this session.</div>`;
+        return;
+      }
+      payload.dataset = ds;
+    }
+    try {
+      const res = await NTD.API.train(payload);
+      NTD.Session.set("model_id", res.model_id);
+      NTD.Session.set("model_meta", res);
+      result.innerHTML = `
+        <div class="alert alert-success">Trained <code>${res.model_id}</code> on ${res.rows_trained} rows.</div>
+        <div>
+          <span class="metric-chip"><span class="label">Rows</span><span class="value">${res.rows_trained}</span></span>
+          <span class="metric-chip"><span class="label">Columns</span><span class="value">${res.columns.length}</span></span>
+          <span class="metric-chip"><span class="label">Categorical</span><span class="value">${res.categorical.length}</span></span>
+        </div>
+        <a href="generate.html" class="btn btn-accent mt-3">Continue to generation</a>`;
+    } catch (err) {
+      result.innerHTML = `<div class="alert alert-danger">${err.message}</div>`;
+    }
+  });
+</script>
+</body>
+</html>

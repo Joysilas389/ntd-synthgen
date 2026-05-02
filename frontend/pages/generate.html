@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Synthetic Data · NTD SynthGen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<main class="container py-5">
+  <div id="alert-wrap"></div>
+  <span class="eyebrow">Step 03 / 04</span>
+  <h1 class="mt-3">Generate synthetic records.</h1>
+  <p class="lede">Sample arbitrary numbers of rows. Optionally constrain the
+  generation to a region, climate band, or any categorical value present in
+  the training data.</p>
+
+  <div class="row g-4 mt-3">
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>Sampling parameters</h3>
+        <div id="model-info" class="mb-3" style="font-family: var(--f-mono); font-size: 0.85rem;"></div>
+        <form id="gen-form">
+          <div class="mb-3">
+            <label class="form-label">Number of rows</label>
+            <input id="n_rows" type="number" min="1" max="10000" value="500" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Conditions (optional)</label>
+            <div id="conditions-wrap"></div>
+            <button type="button" id="add-cond" class="btn btn-outline-dark mt-2" style="font-size:0.7rem; padding: 0.4rem 0.8rem;">+ Add condition</button>
+          </div>
+          <button type="submit" class="btn btn-accent">Generate</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>Preview</h3>
+        <div id="gen-result"><em style="color: var(--c-ink-soft); font-family: var(--f-sans); font-size: 0.9rem;">No data generated yet.</em></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/api.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  NTDLayout.renderHeader("generate");
+  NTDLayout.renderFooter();
+
+  const modelMeta = NTD.Session.get("model_meta");
+  const modelId = NTD.Session.get("model_id");
+  const info = document.getElementById("model-info");
+  if (!modelId) {
+    info.innerHTML = `<div class="alert alert-warning">No trained model in session. <a href="train.html">Train one first.</a></div>`;
+  } else {
+    info.innerHTML = `Active model: <code>${modelId}</code> on module <strong>${modelMeta?.module ?? "?"}</strong>`;
+  }
+
+  // Build the conditions builder.
+  const condWrap = document.getElementById("conditions-wrap");
+  function addRow(col = "", val = "") {
+    const cols = (modelMeta?.columns || []);
+    const row = document.createElement("div");
+    row.className = "d-flex gap-2 mb-2";
+    row.innerHTML = `
+      <select class="form-select cond-col" style="max-width: 220px;">
+        ${cols.map(c => `<option value="${c}" ${c === col ? "selected" : ""}>${c}</option>`).join("")}
+      </select>
+      <input class="form-control cond-val" placeholder="value (e.g. Lagos)" value="${val}">
+      <button type="button" class="btn btn-outline-dark cond-rm" style="font-size:0.7rem; padding: 0.4rem 0.8rem;">×</button>
+    `;
+    row.querySelector(".cond-rm").onclick = () => row.remove();
+    condWrap.appendChild(row);
+  }
+  document.getElementById("add-cond").onclick = () => addRow();
+
+  function collectConditions() {
+    const out = {};
+    document.querySelectorAll("#conditions-wrap > div").forEach(r => {
+      const col = r.querySelector(".cond-col").value;
+      const val = r.querySelector(".cond-val").value;
+      if (col && val !== "") {
+        const num = parseFloat(val);
+        out[col] = isNaN(num) ? val : num;
+      }
+    });
+    return Object.keys(out).length ? out : null;
+  }
+
+  document.getElementById("gen-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!modelId) return;
+    const result = document.getElementById("gen-result");
+    NTD.showLoader(result, "sampling…");
+    try {
+      const res = await NTD.API.generate({
+        model_id: modelId,
+        n_rows: parseInt(document.getElementById("n_rows").value, 10),
+        conditions: collectConditions(),
+      });
+      NTD.Session.set("dataset_generated", res.dataset_id);
+      const cols = res.columns;
+      result.innerHTML = `
+        <div class="alert alert-success">Generated <strong>${res.rows}</strong> rows · id <code>${res.dataset_id}</code></div>
+        <div style="overflow-x:auto;">
+          <table class="table-paper">
+            <thead><tr>${cols.map(c => `<th>${c}</th>`).join("")}</tr></thead>
+            <tbody>${res.preview.map(r => `<tr>${cols.map(c => `<td>${typeof r[c] === "number" ? r[c].toFixed(2) : r[c] ?? ""}</td>`).join("")}</tr>`).join("")}</tbody>
+          </table>
+        </div>
+        <div class="mt-3 d-flex flex-wrap gap-2">
+          <a href="results.html" class="btn btn-accent">Run validation</a>
+          <a href="download.html" class="btn btn-outline-dark">Download</a>
+        </div>`;
+    } catch (err) {
+      result.innerHTML = `<div class="alert alert-danger">${err.message}</div>`;
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+,,fit_s,fit_s,sample_s,sample_s
+,,mean,std,mean,std
+module,backend,,,,
+skin_ntd,bayesian_network,0.1495,0.0014,0.0091,0.0006
+skin_ntd,ctgan,4.3192,0.0861,0.0525,0.0014
+skin_ntd,gaussian_copula,0.0035,0.0001,0.0027,0.0001
+skin_ntd,tvae,1.5307,0.0462,0.0475,0.0007
+vector_borne,bayesian_network,0.1442,0.0102,0.0096,0.0008
+vector_borne,ctgan,4.3457,0.0923,0.0518,0.0017
+vector_borne,gaussian_copula,0.0036,0.0001,0.0028,0.0001
+vector_borne,tvae,1.5524,0.0456,0.0501,0.0036
+water_borne,bayesian_network,0.7364,1.0632,0.0846,0.1308
+water_borne,ctgan,4.4047,0.5424,0.0491,0.0034
+water_borne,gaussian_copula,0.0036,0.0004,0.0029,0.0006
+water_borne,tvae,1.4151,0.1337,0.0425,0.0049

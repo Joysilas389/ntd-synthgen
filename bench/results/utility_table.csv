@@ -1,0 +1,15 @@
+,,case_regression_score_real,case_regression_score_real,case_regression_score_synth,case_regression_score_synth,case_regression_ratio,case_regression_ratio,outbreak_classification_score_real,outbreak_classification_score_real,outbreak_classification_score_synth,outbreak_classification_score_synth,outbreak_classification_ratio,outbreak_classification_ratio
+,,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+module,backend,,,,,,,,,,,,
+skin_ntd,bayesian_network,0.6885,0.0038,-0.1292,0.0973,-0.1878,0.1418,0.7552,0.0482,0.4513,0.0188,0.6001,0.0615
+skin_ntd,ctgan,0.6885,0.0038,-0.7437,0.8017,-1.0802,1.1675,0.7552,0.0482,0.4074,0.084,0.5455,0.1419
+skin_ntd,gaussian_copula,0.6885,0.0038,0.7197,0.0086,1.0452,0.0103,0.7552,0.0482,0.7847,0.0453,1.0393,0.0062
+skin_ntd,tvae,0.6885,0.0038,0.1024,0.1153,0.1486,0.1679,0.7552,0.0482,0.5603,0.0472,0.7426,0.0607
+vector_borne,bayesian_network,0.6066,0.0344,0.1022,0.2785,0.1696,0.4715,0.7377,0.0652,0.5399,0.1606,0.7345,0.2204
+vector_borne,ctgan,0.6066,0.0344,-1.0363,1.5026,-1.7676,2.6017,0.7377,0.0652,0.4178,0.0884,0.5642,0.0968
+vector_borne,gaussian_copula,0.6066,0.0344,0.5592,0.055,0.9237,0.1042,0.7377,0.0652,0.769,0.019,1.0464,0.0694
+vector_borne,tvae,0.6066,0.0344,0.0688,0.3064,0.0996,0.4902,0.7377,0.0652,0.4892,0.0875,0.6606,0.0696
+water_borne,bayesian_network,0.7493,0.0171,0.1248,0.2615,0.1675,0.3477,0.8242,0.0235,0.619,0.1534,0.7494,0.1764
+water_borne,ctgan,0.7493,0.0171,-0.4765,0.3253,-0.6421,0.4534,0.8242,0.0235,0.4905,0.0611,0.5941,0.0576
+water_borne,gaussian_copula,0.7493,0.0171,0.7251,0.0342,0.9676,0.0394,0.8242,0.0235,0.8272,0.0302,1.0039,0.0394
+water_borne,tvae,0.7493,0.0171,-0.3862,0.2831,-0.5098,0.3696,0.8281,,0.4465,,0.5392,

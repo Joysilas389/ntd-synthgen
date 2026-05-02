@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Dataset · NTD SynthGen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<main class="container py-5">
+  <div id="alert-wrap"></div>
+
+  <span class="eyebrow">Step 01 / 04</span>
+  <h1 class="mt-3">Upload your dataset.</h1>
+  <p class="lede">Provide a CSV containing surveillance, environmental, or
+  demographic columns relevant to the disease you want to model. Don't have
+  data? Skip this and use the bundled seed in the next step.</p>
+
+  <div class="row g-4 mt-3">
+    <div class="col-lg-7">
+      <div class="card-paper">
+        <h3>Upload CSV</h3>
+        <form id="upload-form">
+          <div class="mb-3">
+            <label class="form-label">CSV file (max 5 MB)</label>
+            <input id="file" type="file" accept=".csv" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-accent">Upload</button>
+          <a href="train.html" class="btn btn-outline-dark">Skip — use seed data</a>
+        </form>
+        <div id="upload-result" class="mt-4"></div>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="card-paper">
+        <h3>Expected schema</h3>
+        <p>Each disease module declares its expected columns. The system tolerates
+        missing columns and infers types where possible.</p>
+        <div id="schema-list"><span class="spinner-pill">loading…</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/api.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  NTDLayout.renderHeader("upload");
+  NTDLayout.renderFooter();
+
+  // Show schemas
+  NTD.API.listModules().then(mods => {
+    document.getElementById("schema-list").innerHTML = mods.map(m => `
+      <details style="border-top: 1px solid var(--c-rule); padding: 0.6rem 0;">
+        <summary style="font-family: var(--f-display); font-size: 1.05rem; cursor: pointer;">${m.title}</summary>
+        <div style="font-family: var(--f-mono); font-size: 0.8rem; margin-top: 0.4rem;">
+          ${m.features.map(f => `<span style="display:inline-block; padding:2px 6px; border:1px solid var(--c-rule); margin:2px;">${f}</span>`).join("")}
+        </div>
+      </details>`).join("");
+  }).catch(err => NTD.toast(err.message, "danger"));
+
+  document.getElementById("upload-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const file = document.getElementById("file").files[0];
+    if (!file) return;
+    const result = document.getElementById("upload-result");
+    NTD.showLoader(result, "uploading…");
+    try {
+      const res = await NTD.API.upload(file);
+      NTD.Session.set("dataset_id", res.dataset_id);
+      NTD.Session.set("dataset_meta", { filename: res.filename, rows: res.rows, columns: res.columns });
+      result.innerHTML = `
+        <div class="alert alert-success">Uploaded as <code>${res.dataset_id}</code> — ${res.rows} rows, ${res.columns.length} columns.</div>
+        <table class="table-paper mt-3">
+          <thead><tr>${res.columns.map(c => `<th>${c}</th>`).join("")}</tr></thead>
+          <tbody>${res.preview.map(r => `<tr>${res.columns.map(c => `<td>${r[c] ?? ""}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>
+        <a href="train.html" class="btn btn-accent mt-3">Continue to training</a>`;
+    } catch (err) {
+      result.innerHTML = `<div class="alert alert-danger">${err.message}</div>`;
+    }
+  });
+</script>
+</body>
+</html>

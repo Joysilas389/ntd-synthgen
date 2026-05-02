@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation Results · NTD SynthGen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<main class="container py-5">
+  <div id="alert-wrap"></div>
+  <span class="eyebrow">Step 04 / 04</span>
+  <h1 class="mt-3">Real vs synthetic — the metrics that matter.</h1>
+  <p class="lede">A live validation pass against the training data. KS tests
+  measure marginal fidelity. Wasserstein distances measure mass transport.
+  TSTR (Train-on-Synthetic, Test-on-Real) measures downstream utility — the
+  number reviewers care about.</p>
+
+  <div id="metrics-summary" class="my-4"></div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>Per-column statistics</h3>
+        <div id="summary-table" style="overflow-x:auto;"><span class="spinner-pill">computing…</span></div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>KS &amp; Wasserstein</h3>
+        <div id="ks-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-1">
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>Correlation (real ↔ synthetic)</h3>
+        <p style="font-family: var(--f-sans); font-size: 0.85rem; color: var(--c-ink-soft);">Lower Frobenius distance = better preservation of joint structure.</p>
+        <div id="corr-row" class="d-flex flex-wrap gap-4"></div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card-paper">
+        <h3>Distribution overlap</h3>
+        <p style="font-family: var(--f-sans); font-size: 0.85rem; color: var(--c-ink-soft);">Black bars = real, oxblood bars = synthetic.</p>
+        <div id="hist-row"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-paper mt-4">
+    <h3>Categorical TVD (Total Variation Distance)</h3>
+    <div id="tvd-row"></div>
+  </div>
+</main>
+
+<script src="../js/api.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  NTDLayout.renderHeader("results");
+  NTDLayout.renderFooter();
+
+  const modelId = NTD.Session.get("model_id");
+  if (!modelId) {
+    document.getElementById("metrics-summary").innerHTML =
+      `<div class="alert alert-warning">No trained model in session. <a href="train.html">Start here.</a></div>`;
+  } else {
+    runValidation(modelId);
+  }
+
+  async function runValidation(id) {
+    const summary = document.getElementById("metrics-summary");
+    summary.innerHTML = `<span class="spinner-pill">running KS, Wasserstein, TSTR…</span>`;
+    let report;
+    try {
+      ({ report } = await NTD.API.metrics(id, 500));
+    } catch (err) {
+      summary.innerHTML = `<div class="alert alert-danger">${err.message}</div>`;
+      return;
+    }
+
+    // ----- Headline chips -----
+    const tstr = report.tstr || {};
+    const ksAvg = avg(Object.values(report.ks).map(v => v.statistic));
+    const wsAvg = avg(Object.values(report.wasserstein));
+    const corr = report.correlation?.normalized;
+    summary.innerHTML = `
+      <span class="metric-chip">
+        <span class="label">TSTR ratio (${tstr.metric ?? "—"})</span>
+        <span class="value">${tstr.ratio !== null && tstr.ratio !== undefined ? tstr.ratio.toFixed(2) : "—"}</span>
+      </span>
+      <span class="metric-chip">
+        <span class="label">Mean KS statistic</span>
+        <span class="value">${(ksAvg ?? 0).toFixed(3)}</span>
+      </span>
+      <span class="metric-chip">
+        <span class="label">Mean Wasserstein</span>
+        <span class="value">${(wsAvg ?? 0).toFixed(3)}</span>
+      </span>
+      <span class="metric-chip">
+        <span class="label">Corr. Frobenius (norm.)</span>
+        <span class="value">${(corr ?? 0).toFixed(3)}</span>
+      </span>
+    `;
+
+    // ----- Per-column summary table -----
+    const stats = report.summary_stats || [];
+    document.getElementById("summary-table").innerHTML = `
+      <table class="table-paper">
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Real μ</th><th>Synth μ</th>
+            <th>Real σ</th><th>Synth σ</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${stats.map(s => `<tr>
+            <td>${s.column}</td>
+            <td>${s.real_mean}</td><td>${s.synth_mean}</td>
+            <td>${s.real_std}</td><td>${s.synth_std}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>`;
+
+    // ----- KS / Wasserstein -----
+    const ksRows = Object.keys(report.ks).map(col => `
+      <tr>
+        <td>${col}</td>
+        <td>${report.ks[col].statistic.toFixed(3)}</td>
+        <td>${report.ks[col].p_value.toFixed(3)}</td>
+        <td>${(report.wasserstein[col] ?? 0).toFixed(3)}</td>
+      </tr>`).join("");
+    document.getElementById("ks-table").innerHTML = `
+      <table class="table-paper">
+        <thead><tr><th>Column</th><th>KS stat</th><th>p-value</th><th>Wasserstein</th></tr></thead>
+        <tbody>${ksRows}</tbody>
+      </table>`;
+
+    // ----- Correlation matrices side by side -----
+    const corrInfo = report.correlation;
+    const corrRow = document.getElementById("corr-row");
+    if (corrInfo && corrInfo.real_corr) {
+      const realDiv = document.createElement("div");
+      const synthDiv = document.createElement("div");
+      realDiv.innerHTML = `<div style="font-family: var(--f-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--c-ink-soft); margin-bottom: 0.4rem;">Real</div>`;
+      synthDiv.innerHTML = `<div style="font-family: var(--f-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--c-ink-soft); margin-bottom: 0.4rem;">Synthetic</div>`;
+      const r1 = document.createElement("div"); realDiv.appendChild(r1);
+      const r2 = document.createElement("div"); synthDiv.appendChild(r2);
+      NTD.heatmap(r1, corrInfo.real_corr, corrInfo.columns);
+      NTD.heatmap(r2, corrInfo.synth_corr, corrInfo.columns);
+      corrRow.appendChild(realDiv);
+      corrRow.appendChild(synthDiv);
+    } else {
+      corrRow.innerHTML = `<em>Not enough numeric columns for a correlation comparison.</em>`;
+    }
+
+    // ----- Histograms (load fresh data via /samples then sample synth) -----
+    const moduleName = NTD.Session.get("model_meta")?.module;
+    if (moduleName) {
+      try {
+        const sample = await NTD.API.sample(moduleName, 100);
+        const numericCols = (corrInfo?.columns || []).slice(0, 3);
+        if (numericCols.length) {
+          const realDF = sample.data;
+          // Use the model to draw a fresh synthetic batch for visual overlay.
+          const synthRes = await NTD.API.generate({
+            model_id: id, n_rows: 200, conditions: null,
+          });
+          const synthDF = synthRes.preview.length < 100
+            ? synthRes.preview // up to 10 rows
+            : synthRes.preview;
+          const histRow = document.getElementById("hist-row");
+          histRow.innerHTML = numericCols.map(c => `
+            <div class="mb-3">
+              <div style="font-family: var(--f-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--c-ink-soft);">${c}</div>
+              <div id="hist-${c}"></div>
+            </div>`).join("");
+          numericCols.forEach(c => {
+            const real = realDF.map(r => +r[c]).filter(v => !isNaN(v));
+            const synth = synthDF.map(r => +r[c]).filter(v => !isNaN(v));
+            if (real.length && synth.length) {
+              NTD.histogram(document.getElementById(`hist-${c}`), real, synth);
+            }
+          });
+        }
+      } catch (err) {
+        console.warn("Histogram setup skipped:", err);
+      }
+    }
+
+    // ----- Categorical TVD -----
+    const tvd = report.categorical_tvd || {};
+    document.getElementById("tvd-row").innerHTML =
+      Object.keys(tvd).length === 0
+        ? "<em style='font-family: var(--f-sans); color: var(--c-ink-soft);'>No categorical columns in this dataset.</em>"
+        : Object.entries(tvd).map(([col, v]) => `
+          <span class="metric-chip">
+            <span class="label">${col}</span>
+            <span class="value">${v.toFixed(3)}</span>
+          </span>`).join("");
+  }
+
+  function avg(arr) {
+    if (!arr || !arr.length) return null;
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+  }
+</script>
+</body>
+</html>

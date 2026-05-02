@@ -1,0 +1,15 @@
+,,ks_mean_d,ks_mean_d,ks_min_p,ks_min_p,wasserstein_mean,wasserstein_mean,tvd_mean,tvd_mean,correlation_normalised,correlation_normalised
+,,mean,std,mean,std,mean,std,mean,std,mean,std
+module,backend,,,,,,,,,,
+skin_ntd,bayesian_network,0.0813,0.0147,0.0307,0.0406,2.5763,0.058,0.0958,0.0014,0.1876,0.0089
+skin_ntd,ctgan,0.2777,0.0271,0.0,0.0,6.1018,2.5726,0.1028,0.0046,0.191,0.0095
+skin_ntd,gaussian_copula,0.0813,0.0046,0.0091,0.0075,1.6638,0.3372,0.0886,0.0198,0.0815,0.008
+skin_ntd,tvae,0.3232,0.0377,0.0,0.0,5.949,0.4502,0.7167,0.0471,0.1749,0.0172
+vector_borne,bayesian_network,0.0913,0.0156,0.0128,0.0163,4.0511,1.274,0.1114,0.0047,0.1612,0.0269
+vector_borne,ctgan,0.2963,0.0515,0.0,0.0,11.493,2.1247,0.0817,0.0202,0.1778,0.0086
+vector_borne,gaussian_copula,0.0725,0.0042,0.0329,0.0314,2.0328,0.2503,0.0939,0.0097,0.0721,0.0178
+vector_borne,tvae,0.3156,0.0591,0.0,0.0,12.4028,2.2222,0.7028,0.0279,0.146,0.0254
+water_borne,bayesian_network,0.1246,0.0042,0.0,0.0,16.1959,12.5007,0.1058,0.0179,0.1421,0.0516
+water_borne,ctgan,0.329,0.0925,0.0,0.0,18.7624,3.5993,0.08,0.0175,0.1994,0.0092
+water_borne,gaussian_copula,0.0773,0.0075,0.0163,0.0098,5.4137,1.4514,0.0969,0.0146,0.072,0.0068
+water_borne,tvae,0.3513,0.0978,0.0,0.0,23.1123,5.6616,0.7053,0.0504,0.1765,0.0162

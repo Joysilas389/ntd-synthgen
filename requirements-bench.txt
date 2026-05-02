@@ -1,0 +1,15 @@
+# Optional benchmark dependencies — install ONLY for running the
+# cross-backend comparison study (`python -m bench.run_benchmark`).
+#
+# These are NOT installed in the production / Vercel deployment, which
+# stays at ~50 MB using only the base requirements.txt.
+
+# Reference neural tabular synthesizers
+sdv>=1.17.0          # provides CTGANSynthesizer, TVAESynthesizer
+torch>=2.0           # required by SDV; pulls in ~800 MB
+
+# Bayesian network baseline
+pgmpy>=1.0
+
+# Plotting
+matplotlib>=3.7

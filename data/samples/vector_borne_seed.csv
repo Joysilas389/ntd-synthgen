@@ -1,0 +1,301 @@
+region,rainfall_mm,temperature_c,humidity_pct,vegetation_index,vector_density,bednet_coverage,land_use,disease_cases
+Western,43.8,27.5,64.7,0.818,13.5,0.347,urban,3
+Volta,70.8,24.7,84.5,0.258,21.2,0.67,urban,0
+Ashanti,27.7,25.8,74.8,0.535,23.4,0.611,urban,2
+Northern,44.2,30.3,67.4,0.829,270.6,0.652,rural_agriculture,3
+Kano,88.1,32.4,67.7,0.572,94.0,0.545,forest,1
+Rift Valley,103.2,28.6,71.3,0.825,211.4,0.628,rural_agriculture,2
+Kaduna,131.1,25.1,97.1,0.75,118.0,0.566,rural_agriculture,9
+Ashanti,28.6,30.1,71.0,0.633,357.0,0.645,rural_agriculture,5
+Lagos,75.6,25.9,66.8,0.329,28.0,0.681,urban,0
+Rivers,138.9,25.8,56.9,0.933,262.9,0.745,rural_agriculture,0
+Rift Valley,72.7,26.2,55.1,0.638,137.1,0.782,rural_agriculture,0
+Coast,132.2,28.8,46.9,0.676,27.5,0.223,peri_urban,3
+Nyanza,40.1,27.8,72.5,0.722,105.1,0.57,urban,2
+Western,108.7,30.0,70.0,0.14,44.6,0.203,peri_urban,8
+Western,163.8,30.9,57.3,0.668,48.7,0.44,rural_agriculture,5
+Greater Accra,14.7,28.5,51.8,0.321,98.5,0.485,urban,0
+Rivers,31.5,20.0,65.8,0.96,287.7,0.439,rural_agriculture,8
+Volta,143.4,21.9,63.4,0.406,19.5,0.352,peri_urban,2
+Western,44.3,27.5,53.6,0.176,72.1,0.322,forest,5
+Plateau,73.4,26.8,73.3,0.948,73.7,0.842,urban,0
+Northern,138.0,33.5,71.4,0.588,152.0,0.305,forest,5
+Rivers,125.3,26.9,69.1,0.225,149.6,0.642,forest,3
+Volta,106.2,26.5,78.9,0.369,93.5,0.419,forest,2
+Eastern,76.6,29.8,61.8,0.801,123.4,0.677,rural_agriculture,2
+Coast,124.4,30.2,86.0,0.347,276.0,0.546,forest,14
+Kano,99.3,26.3,57.5,0.649,117.9,0.505,rural_agriculture,5
+Nairobi,202.7,28.4,75.8,0.764,320.8,0.404,peri_urban,17
+Nairobi,119.8,23.6,77.3,0.072,166.2,0.82,forest,5
+Nyanza,153.8,24.2,66.5,0.538,158.9,0.494,rural_agriculture,6
+Kano,190.3,30.7,73.9,0.714,91.4,0.39,peri_urban,6
+Western,19.6,22.8,54.2,0.528,29.5,0.58,peri_urban,0
+Plateau,69.4,29.8,51.6,0.582,244.8,0.637,peri_urban,0
+Eastern,94.4,29.0,67.2,0.772,200.6,0.469,rural_agriculture,7
+Nyanza,73.5,29.3,60.9,0.557,30.4,0.795,rural_agriculture,0
+Western,110.8,29.7,76.7,0.26,33.8,0.485,forest,1
+Nairobi,40.7,28.7,70.0,0.493,57.9,0.722,rural_agriculture,0
+Lagos,194.2,20.6,77.0,0.503,81.7,0.659,urban,2
+Kano,305.1,24.0,73.4,0.333,45.5,0.572,forest,3
+Greater Accra,61.0,25.2,72.1,0.713,60.8,0.938,rural_agriculture,0
+Western,131.4,29.7,70.7,0.379,84.9,0.562,rural_agriculture,5
+Northern,56.1,23.6,65.1,0.561,36.6,0.307,peri_urban,8
+Lagos,171.2,24.9,64.0,0.022,39.6,0.778,peri_urban,0
+Rivers,61.8,25.9,94.0,0.91,136.1,0.211,forest,7
+Cross River,282.0,30.9,48.5,0.661,124.9,0.377,rural_agriculture,4
+Nairobi,125.6,22.7,67.4,0.365,81.2,0.414,rural_agriculture,1
+Eastern,62.5,22.9,81.7,0.472,119.7,0.395,urban,4
+Western,9.8,28.9,74.6,0.624,38.7,0.771,peri_urban,0
+Coast,49.2,20.6,86.5,0.453,61.0,0.251,rural_agriculture,11
+Nyanza,22.9,28.0,76.2,0.437,123.5,0.502,rural_agriculture,4
+Northern,92.0,25.6,54.4,0.684,67.1,0.792,rural_agriculture,0
+Eastern,146.3,22.3,65.6,0.573,60.9,0.149,rural_agriculture,11
+Eastern,32.4,25.7,52.7,0.098,71.6,0.528,rural_agriculture,0
+Volta,68.4,24.0,81.4,0.486,68.3,0.637,peri_urban,2
+Kaduna,78.2,27.5,86.9,0.102,31.4,0.354,forest,5
+Rivers,34.1,28.1,64.3,0.137,102.3,0.48,urban,2
+Nairobi,48.9,31.5,76.1,0.819,198.9,0.67,rural_agriculture,5
+Nairobi,248.7,27.0,64.6,0.704,58.8,0.156,rural_agriculture,7
+Ashanti,49.1,27.3,52.3,0.638,273.6,0.443,urban,9
+Kaduna,83.3,25.3,64.2,0.273,175.8,0.475,rural_agriculture,5
+Ashanti,114.9,26.9,50.5,0.927,219.6,0.588,urban,1
+Nyanza,66.6,30.1,62.7,0.444,102.9,0.473,peri_urban,2
+Western,61.4,21.2,72.0,0.591,203.6,0.347,forest,12
+Kaduna,23.1,29.0,78.2,0.415,14.4,0.674,forest,0
+Western,52.5,25.4,85.0,0.391,177.3,0.536,rural_agriculture,6
+Cross River,90.8,27.2,65.5,0.35,42.8,0.402,rural_agriculture,2
+Nairobi,143.8,28.0,72.3,0.574,101.1,0.533,rural_agriculture,5
+Kaduna,136.8,29.6,74.5,0.507,132.0,0.687,forest,0
+Western,203.0,27.7,76.1,0.199,36.3,0.58,forest,4
+Rivers,28.8,25.8,35.2,0.14,30.7,0.819,peri_urban,0
+Plateau,144.1,27.9,60.1,0.301,39.3,0.316,forest,5
+Kaduna,49.7,27.0,79.0,0.271,13.5,0.077,rural_agriculture,12
+Kano,15.5,26.4,56.0,0.762,108.0,0.649,forest,0
+Rivers,42.0,27.6,72.4,0.255,77.1,0.566,peri_urban,1
+Cross River,105.6,29.6,79.4,0.219,66.8,0.579,urban,4
+Rift Valley,65.5,27.4,46.6,0.116,22.7,0.701,peri_urban,0
+Rivers,91.4,27.5,67.1,0.525,271.8,0.625,rural_agriculture,9
+Kaduna,34.7,23.1,72.2,0.571,57.2,0.522,urban,4
+Western,48.9,26.6,69.5,0.729,47.6,0.352,rural_agriculture,0
+Western,217.3,21.4,51.0,0.306,22.1,0.383,urban,2
+Kano,119.4,29.2,73.5,0.657,99.0,0.532,rural_agriculture,1
+Kaduna,212.0,24.2,62.6,0.926,53.7,0.334,forest,4
+Eastern,59.0,30.9,79.2,0.891,63.0,0.661,rural_agriculture,4
+Kano,40.3,36.0,74.5,0.417,108.8,0.533,urban,2
+Plateau,112.9,25.8,62.7,0.102,34.9,0.491,rural_agriculture,3
+Ashanti,112.9,31.0,71.4,0.848,110.1,0.324,rural_agriculture,8
+Rift Valley,64.6,28.2,61.0,0.614,205.5,0.734,forest,2
+Kano,30.9,25.3,60.9,0.607,181.2,0.421,urban,6
+Kaduna,116.8,24.5,50.3,0.882,105.2,0.419,peri_urban,0
+Ashanti,20.2,28.7,66.4,0.177,43.2,0.451,peri_urban,4
+Nairobi,113.2,31.2,78.9,0.765,7.7,0.562,peri_urban,1
+Plateau,99.3,28.1,70.5,0.42,198.7,0.448,forest,6
+Lagos,178.3,22.5,68.9,0.433,140.0,0.453,forest,9
+Coast,92.7,23.9,61.5,0.669,192.0,0.689,rural_agriculture,0
+Cross River,63.7,26.3,62.8,0.553,78.9,0.427,rural_agriculture,3
+Ashanti,59.0,31.1,78.0,0.542,61.1,0.795,forest,3
+Western,81.8,27.9,51.1,0.382,60.5,0.509,forest,0
+Volta,37.3,28.0,93.7,0.607,51.9,0.181,forest,6
+Ashanti,137.0,30.6,68.2,0.288,40.7,0.551,rural_agriculture,0
+Cross River,254.5,26.4,95.0,0.784,291.6,0.849,rural_agriculture,7
+Greater Accra,38.7,26.7,83.0,0.504,443.0,0.543,peri_urban,5
+Cross River,173.7,26.5,63.9,0.597,114.4,0.324,peri_urban,2
+Nairobi,160.9,21.7,77.7,0.589,191.2,0.474,rural_agriculture,11
+Rivers,221.9,28.4,71.9,0.554,129.8,0.277,peri_urban,8
+Kaduna,66.3,28.2,74.4,0.552,153.3,0.375,rural_agriculture,4
+Volta,167.6,29.9,78.3,0.522,44.7,0.551,rural_agriculture,2
+Eastern,203.2,23.4,62.2,0.918,241.6,0.725,rural_agriculture,0
+Northern,158.4,24.6,61.3,0.691,88.5,0.702,peri_urban,1
+Western,105.7,29.8,63.7,0.485,239.0,0.827,forest,1
+Kano,90.1,28.0,52.3,0.454,113.9,0.636,peri_urban,0
+Lagos,91.9,31.1,65.5,0.662,23.2,0.887,forest,0
+Nairobi,104.5,24.4,71.4,0.556,121.6,0.161,forest,9
+Nyanza,30.2,27.6,71.7,0.672,37.1,0.516,rural_agriculture,0
+Rift Valley,14.3,25.0,71.0,0.481,60.7,0.882,rural_agriculture,0
+Rivers,79.8,27.9,63.9,0.815,125.8,0.689,forest,1
+Ashanti,115.4,25.5,78.1,0.339,14.7,0.409,urban,1
+Coast,83.2,28.6,44.0,0.543,197.5,0.447,peri_urban,6
+Rift Valley,183.6,30.2,63.8,0.521,117.3,0.684,peri_urban,0
+Kano,121.7,29.0,64.6,0.588,141.8,0.764,urban,0
+Lagos,76.1,21.6,79.3,0.851,35.5,0.562,peri_urban,4
+Western,135.0,29.8,76.4,0.662,54.4,0.272,peri_urban,7
+Nyanza,46.2,28.3,78.1,0.422,61.7,0.602,urban,1
+Western,240.5,23.9,68.6,0.958,141.0,0.403,urban,3
+Kaduna,105.8,24.3,79.8,0.081,21.2,0.493,peri_urban,3
+Western,71.5,27.0,56.3,0.559,36.4,0.554,urban,0
+Rift Valley,234.0,28.7,69.2,0.643,149.9,0.446,forest,1
+Rivers,42.0,25.6,42.9,0.41,40.8,0.31,rural_agriculture,0
+Eastern,40.6,22.1,88.8,0.266,155.5,0.362,forest,10
+Eastern,184.4,27.8,87.4,0.195,94.2,0.439,peri_urban,7
+Ashanti,32.3,27.5,61.1,0.336,34.6,0.373,urban,1
+Greater Accra,101.9,34.3,58.0,0.168,81.6,0.494,forest,1
+Western,111.5,23.1,43.0,0.564,82.1,0.644,urban,0
+Rift Valley,48.7,34.6,49.8,0.495,150.9,0.48,forest,4
+Lagos,88.8,32.2,69.7,0.414,292.0,0.265,rural_agriculture,11
+Ashanti,6.2,27.9,66.3,0.525,45.5,0.532,rural_agriculture,0
+Northern,128.4,32.0,50.5,0.137,28.9,0.84,forest,0
+Kaduna,93.4,27.3,62.2,0.494,129.3,0.409,peri_urban,4
+Cross River,46.1,29.9,60.2,0.563,81.9,0.296,rural_agriculture,6
+Kaduna,193.1,24.8,73.8,0.878,172.8,0.56,peri_urban,6
+Plateau,101.4,27.2,76.7,0.917,187.5,0.205,rural_agriculture,4
+Plateau,51.3,24.0,65.6,0.761,99.7,0.739,peri_urban,0
+Plateau,27.6,22.3,69.6,0.545,50.1,0.694,peri_urban,0
+Cross River,87.5,26.2,68.2,0.553,81.5,0.116,rural_agriculture,7
+Kaduna,43.8,25.0,43.2,0.392,46.1,0.354,rural_agriculture,0
+Eastern,57.2,28.7,70.4,0.856,62.8,0.386,forest,7
+Rift Valley,73.8,30.8,67.5,0.841,107.0,0.469,peri_urban,6
+Coast,188.1,26.5,77.2,0.187,33.8,0.351,rural_agriculture,2
+Greater Accra,191.4,27.2,46.2,0.168,3.9,0.161,urban,5
+Rivers,38.5,27.6,77.4,0.773,161.3,0.487,peri_urban,4
+Western,53.7,22.0,60.6,0.771,194.6,0.786,forest,0
+Plateau,65.9,27.8,71.5,0.612,83.9,0.378,urban,8
+Western,15.8,27.0,82.8,0.583,64.0,0.491,peri_urban,7
+Cross River,56.8,26.9,50.6,0.233,119.1,0.37,peri_urban,3
+Cross River,32.6,23.7,52.5,0.893,62.6,0.321,forest,5
+Nyanza,75.1,21.1,80.2,0.329,29.2,0.494,forest,3
+Cross River,20.1,26.2,54.6,0.841,25.0,0.462,rural_agriculture,4
+Volta,41.8,27.9,56.8,0.374,11.6,0.508,urban,0
+Ashanti,31.5,31.0,75.5,0.625,47.0,0.271,rural_agriculture,10
+Nairobi,136.1,30.4,65.9,0.371,52.2,0.167,peri_urban,2
+Nyanza,58.7,31.4,77.6,0.094,35.1,0.562,urban,0
+Cross River,104.3,28.1,71.9,0.593,86.0,0.268,forest,4
+Ashanti,111.3,30.5,68.0,0.392,51.5,0.57,peri_urban,1
+Greater Accra,129.1,26.4,80.1,0.606,169.0,0.582,forest,4
+Rift Valley,64.6,28.9,94.6,0.316,105.7,0.784,peri_urban,1
+Northern,210.5,29.8,67.1,0.645,165.5,0.359,forest,6
+Kaduna,147.2,35.1,86.1,0.69,79.1,0.494,rural_agriculture,5
+Eastern,102.5,27.7,81.9,0.502,15.3,0.621,peri_urban,1
+Volta,47.6,23.2,69.7,0.139,40.9,0.631,urban,2
+Rift Valley,96.5,31.1,73.8,0.529,57.6,0.888,rural_agriculture,0
+Ashanti,126.7,24.6,57.1,0.533,82.2,0.533,peri_urban,2
+Greater Accra,145.6,26.8,61.0,0.438,42.6,0.504,urban,0
+Greater Accra,67.8,26.1,71.7,0.419,71.5,0.383,rural_agriculture,4
+Northern,50.2,24.3,67.8,0.382,262.4,0.869,urban,1
+Kaduna,133.4,31.0,84.0,0.093,34.2,0.276,peri_urban,8
+Greater Accra,32.2,28.8,52.8,0.158,23.5,0.24,forest,2
+Plateau,47.5,25.2,64.8,0.165,37.7,0.358,rural_agriculture,0
+Rift Valley,74.0,27.2,60.7,0.375,108.5,0.287,rural_agriculture,3
+Cross River,8.1,25.7,66.5,0.281,58.9,0.815,rural_agriculture,0
+Ashanti,97.4,28.8,82.3,0.034,66.6,0.303,peri_urban,8
+Rift Valley,45.1,25.9,53.9,0.632,105.7,0.483,rural_agriculture,1
+Ashanti,196.5,24.7,78.6,0.422,105.9,0.805,peri_urban,1
+Cross River,135.8,25.1,61.3,0.674,18.9,0.599,rural_agriculture,0
+Nyanza,62.8,25.7,64.5,0.851,137.3,0.116,forest,18
+Lagos,62.8,27.9,80.4,0.214,16.7,0.346,rural_agriculture,7
+Kaduna,35.8,24.2,65.0,0.547,99.8,0.307,rural_agriculture,5
+Volta,65.3,26.7,76.4,0.25,79.7,0.201,peri_urban,11
+Northern,35.8,28.3,69.8,0.469,63.6,0.199,rural_agriculture,5
+Volta,138.1,34.0,66.3,0.174,73.3,0.537,rural_agriculture,0
+Greater Accra,51.9,29.6,64.1,0.958,172.7,0.611,peri_urban,2
+Coast,105.0,18.0,47.6,0.53,21.5,0.606,rural_agriculture,0
+Kano,27.4,25.5,59.5,0.407,121.5,0.159,rural_agriculture,13
+Nyanza,140.9,25.8,70.4,0.565,156.1,0.828,peri_urban,2
+Lagos,57.9,28.0,70.9,0.822,30.3,0.253,urban,4
+Rift Valley,96.5,31.7,50.6,0.382,27.4,0.288,peri_urban,2
+Cross River,21.6,29.2,80.5,0.213,41.9,0.338,rural_agriculture,11
+Plateau,106.7,20.1,75.4,0.516,26.3,0.511,peri_urban,0
+Greater Accra,183.5,27.9,52.9,0.477,21.2,0.477,peri_urban,0
+Western,108.4,27.3,56.0,0.072,62.6,0.265,rural_agriculture,1
+Eastern,140.3,28.2,74.6,0.17,35.9,0.528,rural_agriculture,4
+Nyanza,55.1,31.1,47.4,0.528,24.1,0.61,rural_agriculture,0
+Western,47.5,23.7,59.6,0.395,64.8,0.367,urban,1
+Coast,13.7,30.3,67.9,0.391,169.7,0.24,rural_agriculture,8
+Kano,39.2,22.0,67.0,0.848,33.8,0.495,peri_urban,1
+Coast,83.6,27.2,67.9,0.715,232.4,0.372,urban,11
+Northern,252.3,28.1,73.3,0.642,207.8,0.841,peri_urban,4
+Volta,27.2,33.9,59.0,0.265,36.5,0.446,urban,3
+Plateau,56.1,24.9,62.8,0.57,168.3,0.545,peri_urban,10
+Greater Accra,52.2,21.9,93.3,0.201,123.7,0.635,rural_agriculture,4
+Northern,59.9,29.1,51.8,0.312,18.0,0.377,forest,2
+Nairobi,85.8,25.0,63.2,0.714,158.0,0.305,forest,9
+Eastern,70.5,31.7,70.0,0.279,163.3,0.49,rural_agriculture,6
+Kaduna,125.5,24.9,60.9,0.301,313.2,0.317,urban,8
+Nyanza,219.1,24.4,83.3,0.201,83.7,0.705,rural_agriculture,0
+Northern,85.5,30.7,69.6,0.702,12.8,0.405,rural_agriculture,3
+Ashanti,211.5,27.3,77.8,0.157,49.3,0.819,rural_agriculture,0
+Nairobi,96.3,30.0,37.3,0.518,114.8,0.177,forest,7
+Western,66.9,22.7,83.0,0.487,109.8,0.36,rural_agriculture,10
+Nyanza,74.7,32.0,82.5,0.315,196.4,0.464,forest,7
+Rivers,77.3,25.2,59.6,0.44,68.6,0.614,peri_urban,0
+Nyanza,119.1,29.5,84.4,0.152,8.3,0.467,peri_urban,4
+Coast,57.6,24.0,71.9,0.551,142.1,0.472,forest,5
+Nairobi,181.6,22.3,79.9,0.49,9.8,0.692,forest,0
+Ashanti,62.6,26.2,90.5,0.788,206.3,0.456,peri_urban,11
+Western,24.3,27.5,70.0,0.406,118.6,0.491,urban,1
+Western,71.7,31.7,56.6,0.455,11.9,0.162,rural_agriculture,4
+Ashanti,38.5,28.1,68.7,0.444,58.7,0.285,urban,3
+Kaduna,220.0,29.1,53.5,0.73,81.5,0.71,urban,0
+Ashanti,130.6,29.0,59.2,0.477,66.3,0.391,urban,3
+Nairobi,75.1,36.3,59.7,0.612,166.0,0.293,forest,5
+Nyanza,350.8,24.5,60.3,0.224,32.7,0.141,rural_agriculture,6
+Eastern,69.5,30.8,82.9,0.658,106.1,0.605,rural_agriculture,1
+Eastern,52.1,26.6,78.9,0.966,109.0,0.282,peri_urban,9
+Western,218.4,27.8,58.1,0.119,57.5,0.237,rural_agriculture,0
+Volta,18.9,25.4,82.5,0.729,40.3,0.649,peri_urban,2
+Rift Valley,112.8,30.5,48.8,0.613,47.4,0.499,peri_urban,0
+Volta,26.5,23.2,61.1,0.863,76.8,0.509,peri_urban,3
+Greater Accra,103.0,23.0,67.3,0.45,79.4,0.48,peri_urban,0
+Coast,112.0,26.4,83.3,0.114,54.3,0.36,rural_agriculture,4
+Nyanza,247.2,23.5,77.8,0.86,136.9,0.436,peri_urban,1
+Rift Valley,242.4,29.1,74.5,0.59,270.9,0.333,rural_agriculture,17
+Plateau,77.6,29.8,84.7,0.204,173.1,0.625,peri_urban,3
+Nyanza,148.2,24.7,77.7,0.321,103.5,0.859,peri_urban,0
+Ashanti,62.7,29.4,85.5,0.618,234.1,0.425,rural_agriculture,4
+Ashanti,228.9,25.0,59.7,0.439,41.1,0.398,rural_agriculture,3
+Volta,55.5,26.9,48.8,0.288,44.0,0.425,urban,0
+Ashanti,62.9,27.0,64.1,0.394,34.9,0.594,forest,1
+Plateau,96.3,32.6,79.1,0.483,33.7,0.728,peri_urban,1
+Greater Accra,38.1,27.0,72.3,0.824,16.7,0.381,rural_agriculture,6
+Lagos,54.0,24.3,79.9,0.293,110.6,0.375,forest,4
+Cross River,184.1,24.2,77.7,0.849,50.0,0.823,peri_urban,0
+Kaduna,53.9,30.6,75.4,0.77,100.8,0.365,peri_urban,10
+Rivers,150.5,22.0,79.0,0.276,7.3,0.418,rural_agriculture,3
+Rift Valley,95.2,25.6,60.6,0.561,195.4,0.24,rural_agriculture,5
+Western,106.3,25.9,82.3,0.761,340.5,0.444,peri_urban,13
+Rift Valley,51.4,19.6,57.1,0.458,42.4,0.651,urban,0
+Coast,89.3,25.6,67.8,0.452,107.6,0.363,urban,8
+Cross River,94.9,30.0,52.2,0.72,65.3,0.735,urban,0
+Rivers,85.4,27.7,75.3,0.699,43.9,0.418,peri_urban,2
+Rift Valley,48.5,24.3,50.6,0.145,82.2,0.579,peri_urban,0
+Kaduna,149.4,29.1,86.1,0.069,37.3,0.486,rural_agriculture,1
+Kano,46.0,28.5,53.1,0.676,113.5,0.573,rural_agriculture,0
+Rift Valley,209.6,33.1,72.3,0.461,129.1,0.411,peri_urban,2
+Nyanza,174.3,24.8,67.5,0.493,26.6,0.245,peri_urban,8
+Lagos,86.7,25.8,58.7,0.49,209.8,0.426,forest,3
+Rivers,16.8,27.1,84.2,0.481,39.6,0.524,urban,7
+Greater Accra,141.4,26.6,64.1,0.881,66.4,0.536,rural_agriculture,0
+Nyanza,56.2,27.3,86.8,0.806,56.5,0.635,peri_urban,1
+Rift Valley,29.5,26.7,56.9,0.419,200.6,0.465,forest,6
+Greater Accra,65.5,24.9,59.6,0.744,45.9,0.727,peri_urban,0
+Lagos,96.4,22.2,45.2,0.498,46.0,0.606,urban,0
+Western,318.8,25.3,75.9,0.352,122.5,0.344,rural_agriculture,10
+Plateau,117.6,22.8,80.3,0.586,66.5,0.376,rural_agriculture,0
+Rivers,141.5,23.8,71.9,0.534,86.9,0.588,forest,1
+Eastern,126.0,25.4,67.3,0.612,210.2,0.515,rural_agriculture,9
+Nairobi,27.1,28.5,58.2,0.628,12.6,0.588,peri_urban,0
+Plateau,75.5,29.5,97.5,0.567,81.2,0.582,rural_agriculture,4
+Western,94.9,23.9,78.2,0.032,15.2,0.338,peri_urban,3
+Kaduna,190.3,27.9,47.1,0.695,80.0,0.477,peri_urban,0
+Cross River,10.9,29.4,65.5,0.363,88.9,0.322,rural_agriculture,4
+Rivers,51.2,26.8,37.9,0.717,17.0,0.442,rural_agriculture,0
+Northern,113.1,22.0,88.2,0.809,140.8,0.384,rural_agriculture,9
+Cross River,66.4,20.5,93.0,0.551,121.2,0.777,urban,4
+Ashanti,167.7,29.3,86.8,0.421,75.8,0.643,rural_agriculture,0
+Rivers,104.0,29.7,68.6,0.456,18.8,0.732,forest,0
+Greater Accra,80.2,27.8,62.2,0.602,144.8,0.784,peri_urban,0
+Greater Accra,49.9,23.8,52.4,0.27,7.3,0.706,forest,0
+Eastern,51.1,31.3,75.7,0.16,12.6,0.672,peri_urban,0
+Rift Valley,145.1,30.6,60.3,0.079,62.9,0.334,peri_urban,2
+Nairobi,176.8,26.8,64.8,0.475,42.2,0.414,forest,3
+Kaduna,12.4,26.3,61.6,0.349,24.5,0.767,forest,0
+Western,183.4,21.1,65.6,0.47,17.1,0.292,forest,6
+Kano,62.5,29.2,80.1,0.275,206.0,0.365,rural_agriculture,11
+Volta,89.8,22.1,89.6,0.587,150.2,0.139,peri_urban,5
+Western,54.5,29.0,71.1,0.322,80.1,0.605,peri_urban,1
+Kaduna,56.2,29.1,69.6,0.841,148.1,0.611,rural_agriculture,1
+Cross River,166.8,27.2,55.9,0.61,95.7,0.527,rural_agriculture,0
+Rift Valley,41.9,31.7,54.5,0.724,117.0,0.411,rural_agriculture,6
+Cross River,53.2,26.0,56.5,0.265,67.3,0.185,peri_urban,3
+Eastern,150.1,28.7,80.0,0.326,158.2,0.511,urban,7
+Eastern,74.4,29.3,72.3,0.282,96.0,0.344,urban,5
+Nyanza,192.9,27.7,81.0,0.77,142.5,0.633,forest,2
